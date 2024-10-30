@@ -1,14 +1,18 @@
 ﻿namespace WarhouseEnterprise.Api.DTO;
 
 /// <summary>
-/// DTO для создания ячейки
+/// DTO ячейки
 /// </summary>
-public class CellCreateDTO
+public class CellDTO
 {
     /// <summary>
-    /// Идентификатор товара
+    /// Идентификатор ячейки
     /// </summary>
-    public required int ProductId { get; set; }
+    public required int Id { get; set; }
+    /// <summary>
+    /// Товар
+    /// </summary>
+    public ProductDTO? Product { get; set; }
     /// <summary>
     /// Количество товара в ячейке
     /// </summary>
