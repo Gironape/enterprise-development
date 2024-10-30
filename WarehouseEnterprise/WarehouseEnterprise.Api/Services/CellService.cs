@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using WarhouseEnterprise.Domain.Entities;
-using WarhouseEnterprise.Domain.Repositories;
-using WarhouseEnterprise.Api.DTO;
+using WarehouseEnterprise.Domain;
+using WarehouseEnterprise.Api.Repositories;
+using WarehouseEnterprise.Api.DTO;
 
-namespace WarhouseEnterprise.Api.Services;
+namespace WarehouseEnterprise.Api.Services;
 
 public class CellService(IEntityRepository<Cell> cellRepository, IEntityRepository<Product> productRepository, IMapper mapper) : IEntityService<CellDTO, CellCreateDTO>
 {

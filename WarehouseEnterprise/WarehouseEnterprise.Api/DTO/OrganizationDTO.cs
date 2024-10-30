@@ -1,4 +1,4 @@
-﻿namespace WarhouseEnterprise.Api.DTO;
+﻿namespace WarehouseEnterprise.Api.DTO;
 
 /// <summary>
 /// DTO организации

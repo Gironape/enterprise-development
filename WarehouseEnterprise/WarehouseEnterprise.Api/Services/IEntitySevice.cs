@@ -1,4 +1,4 @@
-﻿namespace EnterpriseWarehouse.API.Services;
+﻿namespace WarehouseEnterprise.Api.Services;
 /// <summary>
 ///  Интерфейс для сервисов сущностей
 /// </summary>

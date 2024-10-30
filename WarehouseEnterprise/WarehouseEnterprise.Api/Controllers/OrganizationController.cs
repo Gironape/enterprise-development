@@ -1,5 +1,5 @@
-﻿using WarhouseEnterprise.Api.DTO;
-using WarhouseEnterprise.Api.Services;
+﻿using WarehouseEnterprise.Api.DTO;
+using WarehouseEnterprise.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WarehouseEnterprise.Api.Controllers;
