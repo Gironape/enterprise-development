@@ -1,4 +1,4 @@
-﻿using WarehouseEnterprise.Api.DTO;
+﻿using WarehouseEnterprise.Api.Dto;
 using WarehouseEnterprise.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +17,7 @@ public class QueryController(IQueryService service) : ControllerBase
     /// <returns>Список продуктов, отсортированных по названию.</returns>
     [HttpGet]
     [Route("sorted-products")]
-    public ActionResult<IEnumerable<ProductDTO>> GetAllProductsSortedByName()
+    public ActionResult<IEnumerable<ProductDto>> GetAllProductsSortedByName()
     {
         return Ok(service.GetAllProductsSortedByName());
     }
@@ -30,7 +30,7 @@ public class QueryController(IQueryService service) : ControllerBase
     /// <returns>Список продуктов, полученных на заданную дату.</returns>
     [HttpGet]
     [Route("products-recived-on-date")]
-    public ActionResult<IEnumerable<ProductDTO>> GetProductsRecieveOnDate([FromQuery] string name, [FromQuery] DateTime date)
+    public ActionResult<IEnumerable<ProductDto>> GetProductsRecieveOnDate([FromQuery] string name, [FromQuery] DateTime date)
     {
         return Ok(service.GetProductsRecieveOnDate(name, date));
     }
@@ -41,7 +41,7 @@ public class QueryController(IQueryService service) : ControllerBase
     /// <returns>Список всех ячеек на складе.</returns>
     [HttpGet]
     [Route("warehouse-state")]
-    public ActionResult<IEnumerable<CellDTO>> GetCurrentWarehouseState()
+    public ActionResult<IEnumerable<CellDto>> GetCurrentWarehouseState()
     {
         return Ok(service.GetCurrentWarehouseState());
     }
@@ -54,7 +54,7 @@ public class QueryController(IQueryService service) : ControllerBase
     /// <returns>Список организаций с максимальной поставкой.</returns>
     [HttpGet]
     [Route("max-supplies-organizations")]
-    public ActionResult<IEnumerable<OrganizationDTO>> GetMaxSuppliesOrganizations([FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
+    public ActionResult<IEnumerable<OrganizationDto>> GetMaxSuppliesOrganizations([FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
     {
         return Ok(service.GetMaxSuppliesOrganizations(startDate, endDate));
     }
@@ -65,7 +65,7 @@ public class QueryController(IQueryService service) : ControllerBase
     /// <returns>Список продуктов с их количеством на складе.</returns>
     [HttpGet]
     [Route("five-max-quantity-products")]
-    public ActionResult<IEnumerable<ProductQuantityDTO>> GetFiveMaxQuantityProducts()
+    public ActionResult<IEnumerable<ProductQuantityDto>> GetFiveMaxQuantityProducts()
     {
         return Ok(service.GetFiveMaxQuantityProducts());
     }
@@ -76,7 +76,7 @@ public class QueryController(IQueryService service) : ControllerBase
     /// <returns>Список продуктов и количество их поставок по организациям.</returns>
     [HttpGet]
     [Route("get-quantity-product-supply-to-organizations")]
-    public ActionResult<IEnumerable<ProductSupplyToOrganizationsDTO>> GetQuantityProductSupplyToOrganiztions()
+    public ActionResult<IEnumerable<ProductSupplyToOrganizationsDto>> GetQuantityProductSupplyToOrganiztions()
     {
         return Ok(service.GetQuantityProductSupplyToOrganiztions());
     }

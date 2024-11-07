@@ -1,9 +1,9 @@
-﻿namespace WarehouseEnterprise.Api.DTO;
+﻿namespace WarehouseEnterprise.Api.Dto;
 
 /// <summary>
-/// DTO для создания товара
+/// Dto для создания товара
 /// </summary>
-public class ProductCreateDTO
+public class ProductCreateDto
 {
     /// <summary>
     /// Код товара

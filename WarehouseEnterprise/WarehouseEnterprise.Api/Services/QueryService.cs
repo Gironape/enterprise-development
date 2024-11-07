@@ -1,34 +1,34 @@
 ﻿using AutoMapper;
 using WarehouseEnterprise.Domain;
 using WarehouseEnterprise.Api.Repositories;
-using WarehouseEnterprise.Api.DTO;
+using WarehouseEnterprise.Api.Dto;
 
 namespace WarehouseEnterprise.Api.Services;
 
 public class QueryService(IEntityRepository<Cell> cellRepository, IEntityRepository<Supply> supplyRepository, IMapper mapper) : IQueryService
 {
-    public List<ProductDTO> GetAllProductsSortedByName()
+    public List<ProductDto> GetAllProductsSortedByName()
     {
         return cellRepository.GetAll()
             .OrderBy(c => c.Product?.Name)
-            .Select(c => mapper.Map<ProductDTO>(c.Product))
+            .Select(c => mapper.Map<ProductDto>(c.Product))
             .ToList();
     }
 
-    public List<ProductDTO> GetProductsRecieveOnDate(string name, DateTime date)
+    public List<ProductDto> GetProductsRecieveOnDate(string name, DateTime date)
     {
         return supplyRepository.GetAll()
             .Where(s => s.Organization.Name == name && s.SupplyDate.Date == date.Date)
-            .Select(s => mapper.Map<ProductDTO>(s.Product))
+            .Select(s => mapper.Map<ProductDto>(s.Product))
             .ToList();
     }
 
-    public List<CellDTO> GetCurrentWarehouseState()
+    public List<CellDto> GetCurrentWarehouseState()
     {
-        return mapper.Map<List<CellDTO>>(cellRepository.GetAll());
+        return mapper.Map<List<CellDto>>(cellRepository.GetAll());
     }
 
-    public List<OrganizationDTO> GetMaxSuppliesOrganizations(DateTime startDate, DateTime endDate)
+    public List<OrganizationDto> GetMaxSuppliesOrganizations(DateTime startDate, DateTime endDate)
     {
         var organizationsWithMaxSupply = supplyRepository.GetAll()
             .Where(s => s.SupplyDate >= startDate && s.SupplyDate <= endDate)
@@ -46,17 +46,17 @@ public class QueryService(IEntityRepository<Cell> cellRepository, IEntityReposit
         var maxQuantity = organizationsWithMaxSupply.Max(o => o.TotalQuantity);
         var result = organizationsWithMaxSupply
             .Where(o => o.TotalQuantity == maxQuantity)
-            .Select(o => mapper.Map<OrganizationDTO>(o.Organization))
+            .Select(o => mapper.Map<OrganizationDto>(o.Organization))
             .ToList();
 
         return result;
     }
 
-    public List<ProductQuantityDTO> GetFiveMaxQuantityProducts()
+    public List<ProductQuantityDto> GetFiveMaxQuantityProducts()
     {
         return cellRepository.GetAll()
             .GroupBy(c => c.Product?.Name)
-            .Select(g => new ProductQuantityDTO
+            .Select(g => new ProductQuantityDto
             {
                 ProductName = g.Key,
                 Quantity = g.Sum(c => c.Quantity),
@@ -66,11 +66,11 @@ public class QueryService(IEntityRepository<Cell> cellRepository, IEntityReposit
             .ToList();
     }
 
-    public List<ProductSupplyToOrganizationsDTO> GetQuantityProductSupplyToOrganiztions()
+    public List<ProductSupplyToOrganizationsDto> GetQuantityProductSupplyToOrganiztions()
     {
         return [.. supplyRepository.GetAll()
             .GroupBy(p => new { ProductName = p.Product.Name, OrganizationName = p.Organization.Name })
-            .Select(g => new ProductSupplyToOrganizationsDTO
+            .Select(g => new ProductSupplyToOrganizationsDto
             {
                 TotalQuantity = g.Sum(p => p.Quantity),
                 ProductName = g.Key.ProductName,

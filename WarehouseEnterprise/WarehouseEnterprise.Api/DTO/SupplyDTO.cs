@@ -1,9 +1,9 @@
-﻿namespace WarehouseEnterprise.Api.DTO;
+﻿namespace WarehouseEnterprise.Api.Dto;
 
 /// <summary>
-/// DTO поставки
+/// Dto поставки
 /// </summary>
-public class SupplyDTO
+public class SupplyDto
 {
     /// <summary>
     /// Идентификатор
@@ -12,11 +12,11 @@ public class SupplyDTO
     /// <summary>
     /// Товар
     /// </summary>
-    public required ProductDTO Product { get; set; }
+    public required ProductDto Product { get; set; }
     /// <summary>
     /// Организация
     /// </summary>
-    public required OrganizationDTO Organization { get; set; }
+    public required OrganizationDto Organization { get; set; }
     /// <summary>
     /// Дата поставки
     /// </summary>

@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using WarehouseEnterprise.Domain;
 using WarehouseEnterprise.Api.Repositories;
-using WarehouseEnterprise.Api.DTO;
+using WarehouseEnterprise.Api.Dto;
 
 namespace WarehouseEnterprise.Api.Services;
 
-public class OrganizationService(IEntityRepository<Organization> repository, IMapper mapper) : IEntityService<OrganizationDTO, OrganizationCreateDTO>
+public class OrganizationService(IEntityRepository<Organization> repository, IMapper mapper) : IEntityService<OrganizationDto, OrganizationCreateDto>
 {
-    public IEnumerable<OrganizationDTO> GetAll() => repository.GetAll().Select(mapper.Map<OrganizationDTO>);
-    public OrganizationDTO? GetById(int id) => mapper.Map<OrganizationDTO>(repository.GetById(id));
+    public IEnumerable<OrganizationDto> GetAll() => repository.GetAll().Select(mapper.Map<OrganizationDto>);
+    public OrganizationDto? GetById(int id) => mapper.Map<OrganizationDto>(repository.GetById(id));
 
-    public OrganizationDTO Add(OrganizationCreateDTO newProduct) => mapper.Map<OrganizationDTO>(repository.Add(mapper.Map<Organization>(newProduct)));
+    public OrganizationDto Add(OrganizationCreateDto newProduct) => mapper.Map<OrganizationDto>(repository.Add(mapper.Map<Organization>(newProduct)));
 
     public bool Delete(int id)
     {
@@ -23,7 +23,7 @@ public class OrganizationService(IEntityRepository<Organization> repository, IMa
         return true;
     }
 
-    public OrganizationDTO? Update(int id, OrganizationCreateDTO updatedOrganization)
+    public OrganizationDto? Update(int id, OrganizationCreateDto updatedOrganization)
     {
         var organization = repository.GetById(id);
         if (organization == null)
@@ -32,6 +32,6 @@ public class OrganizationService(IEntityRepository<Organization> repository, IMa
         }
         organization.Address = updatedOrganization.Address;
         organization.Name = updatedOrganization.Name;
-        return mapper.Map<OrganizationDTO>(repository.Update(organization));
+        return mapper.Map<OrganizationDto>(repository.Update(organization));
     }
 }

@@ -1,4 +1,4 @@
-﻿using WarehouseEnterprise.Api.DTO;
+﻿using WarehouseEnterprise.Api.Dto;
 using WarehouseEnterprise.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,15 +9,15 @@ namespace WarehouseEnterprise.Api.Controllers;
 /// </summary>
 [Route("api/[controller]")]
 [ApiController]
-public class SupplyController(IEntityService<SupplyDTO, SupplyCreateDTO> service) : ControllerBase
+public class SupplyController(IEntityService<SupplyDto, SupplyCreateDto> service) : ControllerBase
 {
     /// <summary>
     /// Возвращает список всех поставок.
     /// </summary>
-    /// <returns>Коллекция объектов <see cref="SupplyDTO"/>.</returns>
+    /// <returns>Коллекция объектов <see cref="SupplyDto"/>.</returns>
     /// <response code="200">Список поставок успешно возвращён.</response>
     [HttpGet]
-    public ActionResult<IEnumerable<SupplyDTO>> Get()
+    public ActionResult<IEnumerable<SupplyDto>> Get()
     {
         return Ok(service.GetAll());
     }
@@ -26,11 +26,11 @@ public class SupplyController(IEntityService<SupplyDTO, SupplyCreateDTO> service
     /// Получает информацию о поставке по её идентификатору.
     /// </summary>
     /// <param name="id">Идентификатор поставки.</param>
-    /// <returns>Объект <see cref="SupplyDTO"/>, представляющий поставку.</returns>
+    /// <returns>Объект <see cref="SupplyDto"/>, представляющий поставку.</returns>
     /// <response code="200">Поставка найдена и информация успешно возвращена.</response>
     /// <response code="404">Поставка с указанным идентификатором не найдена.</response>
     [HttpGet("{id}")]
-    public ActionResult<SupplyDTO> Get(int id)
+    public ActionResult<SupplyDto> Get(int id)
     {
         var supply = service.GetById(id);
         if (supply == null)
@@ -43,12 +43,12 @@ public class SupplyController(IEntityService<SupplyDTO, SupplyCreateDTO> service
     /// <summary>
     /// Добавляет новую поставку.
     /// </summary>
-    /// <param name="newSupply">Объект <see cref="SupplyCreateDTO"/>, содержащий информацию о новой поставке.</param>
-    /// <returns>Объект <see cref="SupplyDTO"/>, представляющий добавленную поставку.</returns>
+    /// <param name="newSupply">Объект <see cref="SupplyCreateDto"/>, содержащий информацию о новой поставке.</param>
+    /// <returns>Объект <see cref="SupplyDto"/>, представляющий добавленную поставку.</returns>
     /// <response code="201">Поставка успешно добавлена.</response>
     /// <response code="400">Ошибка при добавлении поставки.</response>
     [HttpPost]
-    public ActionResult<SupplyDTO> Post(SupplyCreateDTO newSupply)
+    public ActionResult<SupplyDto> Post(SupplyCreateDto newSupply)
     {
         var result = service.Add(newSupply);
         if (result == null)
@@ -62,12 +62,12 @@ public class SupplyController(IEntityService<SupplyDTO, SupplyCreateDTO> service
     /// Обновляет информацию о существующей поставке.
     /// </summary>
     /// <param name="id">Идентификатор поставки.</param>
-    /// <param name="newSupply">Объект <see cref="SupplyCreateDTO"/>, содержащий обновлённые данные поставки.</param>
+    /// <param name="newSupply">Объект <see cref="SupplyCreateDto"/>, содержащий обновлённые данные поставки.</param>
     /// <returns>Объект <see cref="SupplyDTO"/>, представляющий обновлённую поставку.</returns>
     /// <response code="200">Поставка успешно обновлена.</response>
     /// <response code="404">Поставка с указанным идентификатором не найдена.</response>
     [HttpPut("{id}")]
-    public ActionResult<SupplyDTO> Put(int id, SupplyCreateDTO newSupply)
+    public ActionResult<SupplyDto> Put(int id, SupplyCreateDto newSupply)
     {
         var result = service.Update(id, newSupply);
         if (result == null)

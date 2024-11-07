@@ -1,9 +1,9 @@
-﻿namespace WarehouseEnterprise.Api.DTO;
+﻿namespace WarehouseEnterprise.Api.Dto;
 
 /// <summary>
-/// DTO ячейки
+/// Dto ячейки
 /// </summary>
-public class CellDTO
+public class CellDto
 {
     /// <summary>
     /// Идентификатор ячейки
@@ -12,7 +12,7 @@ public class CellDTO
     /// <summary>
     /// Товар
     /// </summary>
-    public ProductDTO? Product { get; set; }
+    public ProductDto? Product { get; set; }
     /// <summary>
     /// Количество товара в ячейке
     /// </summary>

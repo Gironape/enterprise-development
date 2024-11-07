@@ -1,9 +1,9 @@
-﻿namespace WarehouseEnterprise.Api.DTO;
+﻿namespace WarehouseEnterprise.Api.Dto;
 
 /// <summary>
-/// DTO для создания организации
+/// Dto для создания организации
 /// </summary>
-public class OrganizationCreateDTO
+public class OrganizationCreateDto
 {
     /// <summary>
     /// Название

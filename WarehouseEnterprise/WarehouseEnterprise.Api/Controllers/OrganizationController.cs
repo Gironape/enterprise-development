@@ -1,4 +1,4 @@
-﻿using WarehouseEnterprise.Api.DTO;
+﻿using WarehouseEnterprise.Api.Dto;
 using WarehouseEnterprise.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,15 +9,15 @@ namespace WarehouseEnterprise.Api.Controllers;
 /// </summary>
 [Route("api/[controller]")]
 [ApiController]
-public class OrganizationController(IEntityService<OrganizationDTO, OrganizationCreateDTO> service) : ControllerBase
+public class OrganizationController(IEntityService<OrganizationDto, OrganizationCreateDto> service) : ControllerBase
 {
     /// <summary>
     /// Возвращает список всех организаций.
     /// </summary>
-    /// <returns>Коллекция объектов <see cref="OrganizationDTO"/>.</returns>
+    /// <returns>Коллекция объектов <see cref="OrganizationDto"/>.</returns>
     /// <response code="200">Список организаций успешно возвращён.</response>
     [HttpGet]
-    public ActionResult<IEnumerable<OrganizationDTO>> Get()
+    public ActionResult<IEnumerable<OrganizationDto>> Get()
     {
         return Ok(service.GetAll());
     }
@@ -26,11 +26,11 @@ public class OrganizationController(IEntityService<OrganizationDTO, Organization
     /// Возвращает информацию об организации по её идентификатору.
     /// </summary>
     /// <param name="id">Идентификатор организации.</param>
-    /// <returns>Объект <see cref="OrganizationDTO"/>, представляющий организацию.</returns>
+    /// <returns>Объект <see cref="OrganizationDto"/>, представляющий организацию.</returns>
     /// <response code="200">Организация найдена и информация успешно возвращена.</response>
     /// <response code="404">Организация с указанным идентификатором не найдена.</response>
     [HttpGet("{id}")]
-    public ActionResult<OrganizationDTO> Get(int id)
+    public ActionResult<OrganizationDto> Get(int id)
     {
         var organization = service.GetById(id);
         if (organization == null)
@@ -43,11 +43,11 @@ public class OrganizationController(IEntityService<OrganizationDTO, Organization
     /// <summary>
     /// Добавляет новую организацию.
     /// </summary>
-    /// <param name="newOrganization">Объект <see cref="OrganizationCreateDTO"/>, содержащий данные новой организации.</param>
-    /// <returns>Объект <see cref="OrganizationDTO"/>, представляющий добавленную организацию.</returns>
+    /// <param name="newOrganization">Объект <see cref="OrganizationCreateDto"/>, содержащий данные новой организации.</param>
+    /// <returns>Объект <see cref="OrganizationDto"/>, представляющий добавленную организацию.</returns>
     /// <response code="201">Организация успешно добавлена.</response>
     [HttpPost]
-    public ActionResult<OrganizationDTO> Post(OrganizationCreateDTO newOrganization)
+    public ActionResult<OrganizationDto> Post(OrganizationCreateDto newOrganization)
     {
         var result = service.Add(newOrganization);
         return CreatedAtAction(nameof(Get), new { id = result.Id }, result);
@@ -57,12 +57,12 @@ public class OrganizationController(IEntityService<OrganizationDTO, Organization
     /// Обновляет существующую организацию.
     /// </summary>
     /// <param name="id">Идентификатор обновляемой организации.</param>
-    /// <param name="newOrganization">Объект <see cref="OrganizationCreateDTO"/>, содержащий обновлённые данные организации.</param>
-    /// <returns>Объект <see cref="OrganizationDTO"/>, представляющий обновлённую организацию.</returns>
+    /// <param name="newOrganization">Объект <see cref="OrganizationCreateDto"/>, содержащий обновлённые данные организации.</param>
+    /// <returns>Объект <see cref="OrganizationDto"/>, представляющий обновлённую организацию.</returns>
     /// <response code="200">Организация успешно обновлена.</response>
     /// <response code="404">Организация с указанным идентификатором не найдена.</response>
     [HttpPut("{id}")]
-    public ActionResult<OrganizationDTO> Put(int id, OrganizationCreateDTO newOrganization)
+    public ActionResult<OrganizationDto> Put(int id, OrganizationCreateDto newOrganization)
     {
         var result = service.Update(id, newOrganization);
         if (result == null)

@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
 using WarehouseEnterprise.Domain;
 using WarehouseEnterprise.Api.Repositories;
-using WarehouseEnterprise.Api.DTO;
+using WarehouseEnterprise.Api.Dto;
 
 namespace WarehouseEnterprise.Api.Services;
 
-public class CellService(IEntityRepository<Cell> cellRepository, IEntityRepository<Product> productRepository, IMapper mapper) : IEntityService<CellDTO, CellCreateDTO>
+public class CellService(IEntityRepository<Cell> cellRepository, IEntityRepository<Product> productRepository, IMapper mapper) : IEntityService<CellDto, CellCreateDto>
 {
-    public IEnumerable<CellDTO> GetAll() => cellRepository.GetAll().Select(mapper.Map<CellDTO>);
+    public IEnumerable<CellDto> GetAll() => cellRepository.GetAll().Select(mapper.Map<CellDto>);
 
-    public CellDTO? GetById(int id) => mapper.Map<CellDTO>(cellRepository.GetById(id));
+    public CellDto? GetById(int id) => mapper.Map<CellDto>(cellRepository.GetById(id));
 
-    public CellDTO? Add(CellCreateDTO newCell)
+    public CellDto? Add(CellCreateDto newCell)
     {
         var product = productRepository.GetById(newCell.ProductId);
         if (product == null)
@@ -23,7 +23,7 @@ public class CellService(IEntityRepository<Cell> cellRepository, IEntityReposito
             Product = product,
             Quantity = newCell.Quantity,
         };
-        return mapper.Map<CellDTO>(cellRepository.Add(cell));
+        return mapper.Map<CellDto>(cellRepository.Add(cell));
     }
     public bool Delete(int id)
     {
@@ -36,7 +36,7 @@ public class CellService(IEntityRepository<Cell> cellRepository, IEntityReposito
         return true;
     }
 
-    public CellDTO? Update(int id, CellCreateDTO updatedCell)
+    public CellDto? Update(int id, CellCreateDto updatedCell)
     {
         var cell = cellRepository.GetById(id);
         if (cell == null)
@@ -50,6 +50,6 @@ public class CellService(IEntityRepository<Cell> cellRepository, IEntityReposito
         }
         cell.Product = product;
         cell.Quantity = updatedCell.Quantity;
-        return mapper.Map<CellDTO>(cellRepository.Update(cell));
+        return mapper.Map<CellDto>(cellRepository.Update(cell));
     }
 }

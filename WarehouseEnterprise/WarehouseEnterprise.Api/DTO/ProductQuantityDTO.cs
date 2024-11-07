@@ -1,9 +1,9 @@
-﻿namespace WarehouseEnterprise.Api.DTO;
+﻿namespace WarehouseEnterprise.Api.Dto;
 
 /// <summary>
-/// DTO описывающее продукт и его количество на складе
+/// Dto описывающее продукт и его количество на складе
 /// </summary>
-public class ProductQuantityDTO
+public class ProductQuantityDto
 {
     /// <summary>
     /// Название товара

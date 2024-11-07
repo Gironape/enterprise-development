@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
 using WarehouseEnterprise.Domain;
-using WarehouseEnterprise.Api.DTO;
+using WarehouseEnterprise.Api.Dto;
 namespace WarehouseEnterprise.Api.Mapper;
 
 public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<Organization, OrganizationDTO>().ReverseMap();
-        CreateMap<Organization, OrganizationCreateDTO>().ReverseMap();
+        CreateMap<Organization, OrganizationDto>().ReverseMap();
+        CreateMap<Organization, OrganizationCreateDto>().ReverseMap();
 
-        CreateMap<Product, ProductDTO>().ReverseMap();
-        CreateMap<Product, ProductCreateDTO>().ReverseMap();
+        CreateMap<Product, ProductDto>().ReverseMap();
+        CreateMap<Product, ProductCreateDto>().ReverseMap();
 
-        CreateMap<Cell, CellDTO>().ReverseMap();
+        CreateMap<Cell, CellDto>().ReverseMap();
 
-        CreateMap<Supply, SupplyDTO>().ReverseMap();
+        CreateMap<Supply, SupplyDto>().ReverseMap();
     }
 }

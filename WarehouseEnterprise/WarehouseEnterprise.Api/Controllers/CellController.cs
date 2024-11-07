@@ -1,4 +1,4 @@
-﻿using WarehouseEnterprise.Api.DTO;
+﻿using WarehouseEnterprise.Api.Dto;
 using WarehouseEnterprise.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,15 +9,15 @@ namespace WarehouseEnterprise.Api.Controllers;
 /// </summary>
 [Route("api/[controller]")]
 [ApiController]
-public class CellController(IEntityService<CellDTO, CellCreateDTO> service) : ControllerBase
+public class CellController(IEntityService<CellDto, CellCreateDto> service) : ControllerBase
 {
     /// <summary>
     /// Возвращает список всех ячеек склада.
     /// </summary>
-    /// <returns>Коллекция объектов <see cref="CellDTO"/>.</returns>
+    /// <returns>Коллекция объектов <see cref="CellDto"/>.</returns>
     /// <response code="200">Список ячеек успешно возвращён.</response>
     [HttpGet]
-    public ActionResult<IEnumerable<CellDTO>> Get()
+    public ActionResult<IEnumerable<CellDto>> Get()
     {
         return Ok(service.GetAll());
     }
@@ -26,11 +26,11 @@ public class CellController(IEntityService<CellDTO, CellCreateDTO> service) : Co
     /// Получает информацию о ячейке склада по её идентификатору.
     /// </summary>
     /// <param name="id">Идентификатор ячейки.</param>
-    /// <returns>Объект <see cref="CellDTO"/>, представляющий ячейку.</returns>
+    /// <returns>Объект <see cref="CellDto"/>, представляющий ячейку.</returns>
     /// <response code="200">Ячейка найдена и информация успешно возвращена.</response>
     /// <response code="404">Ячейка с указанным идентификатором не найдена.</response>
     [HttpGet("{id}")]
-    public ActionResult<CellDTO> Get(int id)
+    public ActionResult<CellDto> Get(int id)
     {
         var cell = service.GetById(id);
         if (cell == null)
@@ -43,12 +43,12 @@ public class CellController(IEntityService<CellDTO, CellCreateDTO> service) : Co
     /// <summary>
     /// Добавляет новую ячейку на склад.
     /// </summary>
-    /// <param name="newCell">Объект <see cref="CellCreateDTO"/>, содержащий информацию о новой ячейке.</param>
-    /// <returns>Объект <see cref="CellDTO"/>, представляющий добавленную ячейку.</returns>
+    /// <param name="newCell">Объект <see cref="CellCreateDto"/>, содержащий информацию о новой ячейке.</param>
+    /// <returns>Объект <see cref="CellDto"/>, представляющий добавленную ячейку.</returns>
     /// <response code="201">Ячейка успешно добавлена.</response>
     /// <response code="400">Ошибка при добавлении ячейки.</response>
     [HttpPost]
-    public ActionResult<CellDTO> Post(CellCreateDTO newCell)
+    public ActionResult<CellDto> Post(CellCreateDto newCell)
     {
         var result = service.Add(newCell);
         if (result == null)
@@ -62,12 +62,12 @@ public class CellController(IEntityService<CellDTO, CellCreateDTO> service) : Co
     /// Обновляет информацию о существующей ячейке.
     /// </summary>
     /// <param name="id">Идентификатор ячейки.</param>
-    /// <param name="newCell">Объект <see cref="CellCreateDTO"/>, содержащий обновлённые данные ячейки.</param>
-    /// <returns>Объект <see cref="CellDTO"/>, представляющий обновлённую ячейку.</returns>
+    /// <param name="newCell">Объект <see cref="CellCreateDto"/>, содержащий обновлённые данные ячейки.</param>
+    /// <returns>Объект <see cref="CellDto"/>, представляющий обновлённую ячейку.</returns>
     /// <response code="200">Ячейка успешно обновлена.</response>
     /// <response code="404">Ячейка с указанным идентификатором не найдена.</response>
     [HttpPut("{id}")]
-    public ActionResult<CellDTO> Put(int id, CellCreateDTO newCell)
+    public ActionResult<CellDto> Put(int id, CellCreateDto newCell)
     {
         var result = service.Update(id, newCell);
         if (result == null)

@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
 using WarehouseEnterprise.Domain;
 using WarehouseEnterprise.Api.Repositories;
-using WarehouseEnterprise.Api.DTO;
+using WarehouseEnterprise.Api.Dto;
 
 namespace WarehouseEnterprise.Api.Services;
 
-public class SupplyService(IEntityRepository<Supply> supplyRepository, IEntityRepository<Organization> organizationRepository, IEntityRepository<Product> productRepository, IMapper mapper) : IEntityService<SupplyDTO, SupplyCreateDTO>
+public class SupplyService(IEntityRepository<Supply> supplyRepository, IEntityRepository<Organization> organizationRepository, IEntityRepository<Product> productRepository, IMapper mapper) : IEntityService<SupplyDto, SupplyCreateDto>
 {
-    public IEnumerable<SupplyDTO> GetAll() => supplyRepository.GetAll().Select(mapper.Map<SupplyDTO>);
+    public IEnumerable<SupplyDto> GetAll() => supplyRepository.GetAll().Select(mapper.Map<SupplyDto>);
 
-    public SupplyDTO? GetById(int id) => mapper.Map<SupplyDTO>(supplyRepository.GetById(id));
+    public SupplyDto? GetById(int id) => mapper.Map<SupplyDto>(supplyRepository.GetById(id));
 
-    public SupplyDTO? Add(SupplyCreateDTO newSupply)
+    public SupplyDto? Add(SupplyCreateDto newSupply)
     {
         var organization = organizationRepository.GetById(newSupply.OrganizationId);
         var product = productRepository.GetById(newSupply.ProductId);
@@ -26,7 +26,7 @@ public class SupplyService(IEntityRepository<Supply> supplyRepository, IEntityRe
             SupplyDate = newSupply.SupplyDate,
             Quantity = newSupply.Quantity,
         };
-        return mapper.Map<SupplyDTO>(supplyRepository.Add(supply));
+        return mapper.Map<SupplyDto>(supplyRepository.Add(supply));
     }
 
     public bool Delete(int id)
@@ -40,7 +40,7 @@ public class SupplyService(IEntityRepository<Supply> supplyRepository, IEntityRe
         return true;
     }
 
-    public SupplyDTO? Update(int id, SupplyCreateDTO updatedSupply)
+    public SupplyDto? Update(int id, SupplyCreateDto updatedSupply)
     {
         var supply = supplyRepository.GetById(id);
         if (supply == null)
@@ -57,6 +57,6 @@ public class SupplyService(IEntityRepository<Supply> supplyRepository, IEntityRe
         supply.Organization = organization;
         supply.SupplyDate = updatedSupply.SupplyDate;
         supply.Quantity = updatedSupply.Quantity;
-        return mapper.Map<SupplyDTO>(supplyRepository.Update(supply));
+        return mapper.Map<SupplyDto>(supplyRepository.Update(supply));
     }
 }

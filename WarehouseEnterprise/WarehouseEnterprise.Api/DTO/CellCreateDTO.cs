@@ -1,9 +1,9 @@
-﻿namespace WarehouseEnterprise.Api.DTO;
+﻿namespace WarehouseEnterprise.Api.Dto;
 
 /// <summary>
-/// DTO для создания ячейки
+/// Dto для создания ячейки
 /// </summary>
-public class CellCreateDTO
+public class CellCreateDto
 {
     /// <summary>
     /// Идентификатор товара

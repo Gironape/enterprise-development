@@ -1,9 +1,9 @@
-﻿namespace WarehouseEnterprise.Api.DTO;
+﻿namespace WarehouseEnterprise.Api.Dto;
 
 /// <summary>
-/// DTO организации
+/// Dto организации
 /// </summary>
-public class OrganizationDTO
+public class OrganizationDto
 {
     /// <summary>
     /// Идентификатор
