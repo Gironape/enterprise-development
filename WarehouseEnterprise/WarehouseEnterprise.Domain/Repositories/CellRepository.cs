@@ -1,8 +1,7 @@
 ﻿using WarehouseEnterprise.Domain.Context;
-using WarehouseEnterprise.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace WarehouseEnterprise.Api.Repositories;
+namespace WarehouseEnterprise.Domain.Repositories;
 
 public class CellRepository(WarehouseContext context) : IEntityRepository<Cell>
 {

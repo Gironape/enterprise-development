@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using WarehouseEnterprise.Domain;
-using WarehouseEnterprise.Api.Repositories;
+using WarehouseEnterprise.Domain.Repositories;
 using WarehouseEnterprise.Api.Dto;
 
 namespace WarehouseEnterprise.Api.Services;

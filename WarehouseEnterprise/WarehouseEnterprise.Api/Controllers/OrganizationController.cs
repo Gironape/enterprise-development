@@ -50,6 +50,12 @@ public class OrganizationController(IEntityService<OrganizationDto, Organization
     public ActionResult<OrganizationDto> Post(OrganizationCreateDto newOrganization)
     {
         var result = service.Add(newOrganization);
+
+        if (result == null)
+        {
+            return NotFound("Not Found");
+        }
+
         return CreatedAtAction(nameof(Get), new { id = result.Id }, result);
     }
 

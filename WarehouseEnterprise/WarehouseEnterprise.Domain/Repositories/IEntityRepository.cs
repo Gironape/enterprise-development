@@ -1,4 +1,5 @@
-﻿namespace WarehouseEnterprise.Api.Repositories;
+﻿namespace WarehouseEnterprise.Domain.Repositories;
+
 /// <summary>
 /// Обобщенный интерфейс репозитория
 /// </summary>
