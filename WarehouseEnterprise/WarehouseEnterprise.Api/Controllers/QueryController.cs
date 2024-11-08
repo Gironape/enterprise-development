@@ -78,6 +78,6 @@ public class QueryController(IQueryService service) : ControllerBase
     [Route("get-quantity-product-supply-to-organizations")]
     public ActionResult<IEnumerable<ProductSupplyToOrganizationsDto>> GetQuantityProductSupplyToOrganiztions()
     {
-        return Ok(service.GetQuantityProductSupplyToOrganiztions());
+        return Ok(service.GetQuantityProductSupplyToOrganizations());
     }
 }
