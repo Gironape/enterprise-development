@@ -66,7 +66,7 @@ public class QueryService(IEntityRepository<Cell> cellRepository, IEntityReposit
             .ToList();
     }
 
-    public List<ProductSupplyToOrganizationsDto> GetQuantityProductSupplyToOrganiztions()
+    public List<ProductSupplyToOrganizationsDto> GetQuantityProductSupplyToOrganizations()
     {
         return [.. supplyRepository.GetAll()
             .GroupBy(p => new { ProductName = p.Product.Name, OrganizationName = p.Organization.Name })

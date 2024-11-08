@@ -2,22 +2,22 @@
 /// <summary>
 ///  Интерфейс для сервисов сущностей
 /// </summary>
-public interface IEntityService<DTO, CreateDTO>
+public interface IEntityService<Dto, CreateDto>
 {
     /// <summary>
     /// Получение всех сущностей
     /// </summary>
-    public IEnumerable<DTO> GetAll();
+    public IEnumerable<Dto> GetAll();
 
     /// <summary>
     /// Получение сущности при помощи id
     /// </summary>
-    DTO? GetById(int id);
+    Dto? GetById(int id);
 
     /// <summary>
     /// Добавление сущности
     /// </summary>
-    DTO? Add(CreateDTO entity);
+    Dto? Add(CreateDto entity);
 
     /// <summary>
     /// Удаление сущности
@@ -27,5 +27,5 @@ public interface IEntityService<DTO, CreateDTO>
     /// <summary>
     /// Изменение сущности
     /// </summary>
-    DTO? Update(int id, CreateDTO updatedEntity);
+    Dto? Update(int id, CreateDto updatedEntity);
 }

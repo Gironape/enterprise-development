@@ -34,5 +34,5 @@ public interface IQueryService
     /// <summary>
     /// Получить информацию о количестве поставленного товара по каждому товару и каждой организации
     /// </summary>
-    public List<ProductSupplyToOrganizationsDto> GetQuantityProductSupplyToOrganiztions();
+    public List<ProductSupplyToOrganizationsDto> GetQuantityProductSupplyToOrganizations();
 }
